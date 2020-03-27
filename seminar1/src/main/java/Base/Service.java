@@ -1,15 +1,12 @@
 package Base;
 
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class Service {
-    public List getList(String _name, List<Data> dataList) {
+    public List getListByNames(String _name, List<Data> dataList) {
         List<Data> myList = new ArrayList<>();
         for (int i = 0; i < dataList.size(); i++) {
             if (dataList.get(i).getName().equals(_name)) {
@@ -19,7 +16,7 @@ public class Service {
         return myList;
     }
 
-    public List getListLevel(double level, List<Data> dataList) {
+    public List getListByValue(double level, List<Data> dataList) {
         List<Data> myList = new ArrayList<>();
         for (int i = 0; i < dataList.size(); i++) {
             if (Math.abs(dataList.get(i).getValue()) <= level) {
@@ -29,9 +26,8 @@ public class Service {
         return myList;
     }
 
-    public Set getSet(List<Data> dataList, Set<String> names) {
+    public Set getSetValuesByNames(List<Data> dataList, Set<String> names) {
         Set<Double> mySet = new HashSet<>();
-
         for (int i = 0; i < dataList.size(); i++) {
             if (names.contains(dataList.get(i).getName())) {
                 mySet.add(dataList.get(i).getValue());
@@ -40,39 +36,44 @@ public class Service {
         return mySet;
     }
 
-    public String[] getArray(List<Data> dataList) {
+    public String[] getNamesOfPositiveValueItems(List<Data> dataList) {
         String[] strings = new String[dataList.size()];
-        List<String> myList = new ArrayList<>();
+        Set<String> setOfPositiveNames = new HashSet<>();
         for (int i = 0; i < dataList.size(); i++) {
             if (dataList.get(i).getValue() > 0) {
-                strings[i] = dataList.get(i).getName();
-                myList.add(dataList.get(i).getName());
+                setOfPositiveNames.add(dataList.get(i).getName());
             }
         }
-        for (int i = 0; i < myList.size(); i++) {
-            if (myList.contains(strings[i]))
-                myList.remove(i);
-        }
-        strings = myList.toArray(new String[0]);
+        strings = setOfPositiveNames.toArray(new String[0]);
         return strings;
     }
 
-    public Set newSet(List<Set<Type>> setList) {
-        Set<Type> myNewSet = new HashSet<>();
-        for (int i = 0; i < setList.size(); i++) {
-            myNewSet.add((Type) setList.get(i));
+    public <T> Set combineSet(List<Set<T>> list) {
+        Set<T> myNewSet = new HashSet<>();
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).equals(null)) {
+                throw new IllegalArgumentException("list has null elem, cannot add it to set exception");
+            }
+            myNewSet.add((T) list.get(i));
         }
         return myNewSet;
     }
 
-    public Set crossSet(List<Set<Type>> setList) {
-        for (int i = 0; i < setList.size(); i++){
+    public <T> Set crossSet(List<Set<T>> setList) {
+        Set<T> setPar = new HashSet<>();
+        for (int i = 0; i < setList.size() - 1; i++) {
+            if (setList.get(i).equals(null) || setList.get(i + 1).equals(null)) {
+                throw new IllegalArgumentException("Set is null exception");
+            }
+            setList.get(i).retainAll(setList.get(i + 1));
         }
+        setPar.add((T) setList);
+        return setPar;
     }
 
-    public List maxSet(List<Set<Type>> setList) {
+    public <T> List maxSet(List<Set<T>> setList) {
         int size = 0;
-        List<Set<Type>> mySetList = new ArrayList<>();
+        List<Set<T>> mySetList = new ArrayList<>();
         for (int i = 0; i < setList.size(); i++) {
             if (setList.get(i).size() >= size) {
                 size = setList.get(i).size();
@@ -80,6 +81,9 @@ public class Service {
         }
         for (int i = 0; i < setList.size(); i++) {
             if (setList.get(i).size() == size) {
+                if (setList.get(i).equals(null)){
+                    throw new IllegalArgumentException("wanted to add null elem to set exception");
+                }
                 mySetList.add(setList.get(i));
             }
         }
