@@ -29,9 +29,7 @@ public class DataSet {
     }
 
     public List sortDataSetList(List<Data> dataList) {
-        for(Data data:dataList){
-
-        }
+        Collections.sort(dataList,new SortElemByNames());
         return dataList;
     }
 }

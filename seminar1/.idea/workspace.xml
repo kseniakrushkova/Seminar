@@ -31,6 +31,67 @@
       </list>
     </option>
   </component>
+  <component name="RunManager" selected="JUnit.TestDataSet.testSortDataSetList">
+    <configuration name="TestDataSet.testSortDataSetList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="seminar1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestDataSet" />
+      <option name="METHOD_NAME" value="testSortDataSetList" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestService.testGetListByValue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="seminar1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestService" />
+      <option name="METHOD_NAME" value="testGetListByValue" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestService.testGetNamesOfPositiveValueItems" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="seminar1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestService" />
+      <option name="METHOD_NAME" value="testGetNamesOfPositiveValueItems" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestService.testGetSetValuesByNames" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="seminar1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestService" />
+      <option name="METHOD_NAME" value="testGetSetValuesByNames" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestService.testMaxSet" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="seminar1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestService" />
+      <option name="METHOD_NAME" value="testMaxSet" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.TestDataSet.testSortDataSetList" />
+        <item itemvalue="JUnit.TestService.testMaxSet" />
+        <item itemvalue="JUnit.TestService.testGetNamesOfPositiveValueItems" />
+        <item itemvalue="JUnit.TestService.testGetSetValuesByNames" />
+        <item itemvalue="JUnit.TestService.testGetListByValue" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
