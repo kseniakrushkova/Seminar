@@ -89,20 +89,17 @@ public class Service {
     public <T> List maxSet(List<Set<T>> setList) {
         int size = 0;
         List<Set<T>> mySetList = new ArrayList<>();
-        for (int i = 0; i < setList.size(); i++) {
-            if (setList.get(i) == null) {
+        for (Set<T> ts : setList) {
+            if (ts == null) {
                 throw new IllegalArgumentException("wanted to add null elem to set exception");
             }
-            if (setList.get(i).size() >= size) {
-                size = setList.get(i).size();
+            if (ts.size() >= size) {
+                size = ts.size();
             }
         }
-        for (int i = 0; i < setList.size(); i++) {
-            if (setList.get(i).size() == size) {
-                if (setList.get(i) == null) {
-                    throw new IllegalArgumentException("wanted to add null elem to set exception");
-                }
-                mySetList.add(setList.get(i));
+        for (Set<T> ts : setList) {
+            if (ts.size() == size) {
+                mySetList.add(ts);
             }
         }
         return mySetList;
