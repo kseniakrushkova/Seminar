@@ -1,4 +1,4 @@
-package JCF;
+package ru.imit.omsu.seminar3;
 
 import java.util.ArrayList;
 import java.util.List;
