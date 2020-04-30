@@ -33,7 +33,7 @@ public class TablesString {
     public MarkState getMark() {
         return mark;
     }
-    
+
     public void setMark(MarkState mark) {
         if (!mark.equals(MarkState.values())) {
             throw new IllegalArgumentException();

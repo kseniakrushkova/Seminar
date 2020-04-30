@@ -21,16 +21,19 @@ public class Service {
 
     public double averageRating(ReferenceAboutTheStudiedDisciplines ref) {
         double mult = 1;
-        for (int i = 0; i < ref.getTablesString().size(); i++) {
-            if (ref.getTablesString().get(i).getMark().equals(MarkState.УДОВЛЕТВОРИТЕЛЬНО)) {
-                mult *= 3;
-            }
-            if (ref.getTablesString().get(i).getMark().equals(MarkState.ХОРОШО)) {
-                mult *= 4;
-            }
-            if (ref.getTablesString().get(i).getMark().equals(MarkState.ОТЛИЧНО)) {
-                mult *= 5;
-            }
+//        for (int i = 0; i < ref.getTablesString().size(); i++) {
+//            if (ref.getTablesString().get(i).getMark().equals(MarkState.УДОВЛЕТВОРИТЕЛЬНО)) {
+//                mult *= 3;
+//            }
+//            if (ref.getTablesString().get(i).getMark().equals(MarkState.ХОРОШО)) {
+//                mult *= 4;
+//            }
+//            if (ref.getTablesString().get(i).getMark().equals(MarkState.ОТЛИЧНО)) {
+//                mult *= 5;
+//            }
+//        }
+        for (TablesString ts: ref.getTablesString()){
+            mult*=ts.getMark().getValue();
         }
         return mult / ref.getTablesString().size();
     }
@@ -49,12 +52,11 @@ public class Service {
             List<String> stringList = new ArrayList<>();
             if (!stringMap.containsKey(ref.getTablesString().get(i).getMark())) {
                 stringList.add(ref.getTablesString().get(i).getDisciplineName());
-                stringMap.put(ref.getTablesString().get(i).getMark(), stringList);
             } else {
                 stringList = stringMap.get(ref.getTablesString().get(i).getMark());
                 stringList.add(ref.getTablesString().get(i).getDisciplineName());
-                stringMap.put(ref.getTablesString().get(i).getMark(), stringList);
             }
+            stringMap.put(ref.getTablesString().get(i).getMark(), stringList);
         }
         return stringMap;
     }
