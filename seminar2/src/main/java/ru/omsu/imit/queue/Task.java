@@ -1,4 +1,4 @@
-package queue;
+package ru.omsu.imit.queue;
 
 import java.util.Arrays;
 
