@@ -21,14 +21,27 @@ public class Service {
     }
 
     public static boolean isObjectFunctionalInterface(Class<?> object) {
-        return object.isInterface() && object.getMethods().length == 1 &&
-                Modifier.isPublic(object.getModifiers()) && Modifier.isAbstract(object.getModifiers());
+        int count = 0;
+        if (object.isInterface()) {
+            for (Method method : object.getMethods()){
+                if (Modifier.isPublic(method.getModifiers()) && Modifier.isAbstract(method.getModifiers())){
+                    count++;
+                }
+            }
+        }
+        return count == 1;
+//        if (object.isInterface() && Modifier.isPublic(object.getModifiers()) &&
+//                Modifier.isAbstract(object.getModifiers())){
+//
+//        }
+//        return object.isInterface() && Modifier.isPublic(object.getModifiers()) &&
+//                Modifier.isAbstract(object.getModifiers());
     }
 
     public  static boolean checkImplementsMethodSerializable(Object object) {
         Class<?>[] interfaces = object.getClass().getInterfaces();
         for (Class<?> iClass : interfaces) {
-            if (iClass.getName().equals(Serializable.class.getName())) {
+            if (iClass == Serializable.class) {
                 System.out.println(iClass.getName());
                 return true;
             }
@@ -37,25 +50,25 @@ public class Service {
     }
 
     public static boolean hasObjectImplementedSerializableInterface(Object object) {
-
-        List<Class<?>> classes = new ArrayList<>();
-        Class<?> superclass = object.getClass().getSuperclass();
-        classes.add(object.getClass());
-        do {
-            classes.add(superclass);
-            superclass = superclass.getSuperclass();
-        } while (superclass != null);
-
-        for (Class<?> cClass : classes) {
-            Class<?>[] interfaces = cClass.getInterfaces();
-            for (Class<?> iClass : interfaces) {
-                if (iClass.getName().equals(Serializable.class.getName()) || checkImplementsMethodSerializable(cClass)) {
-                    return true;
-                }
-            }
-
-        }
-        return false;
+//        List<Class<?>> classes = new ArrayList<>();
+//        Class<?> superclass = object.getClass().getSuperclass();
+//        classes.add(object.getClass());
+//        do {
+//            classes.add(superclass);
+//            superclass = superclass.getSuperclass();
+//        } while (superclass != null);
+//
+//        for (Class<?> cClass : classes) {
+//            Class<?>[] interfaces = cClass.getInterfaces();
+//            for (Class<?> iClass : interfaces) {
+//                if (iClass.getName().equals(Serializable.class.getName()) || checkImplementsMethodSerializable(cClass)) {
+//                    return true;
+//                }
+//            }
+//
+//        }
+//        return false;
+        return object instanceof Serializable;
     }
 
     public static List<String> metadataClassesListWithAtLeastOneStaticMethod(List<Class<?>> classList) {
@@ -71,6 +84,4 @@ public class Service {
         }
         return stringList;
     }
-
-
 }

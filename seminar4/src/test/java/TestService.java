@@ -2,7 +2,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import ru.omsu.imit.seminar4.reflection.Base;
 import ru.omsu.imit.seminar4.reflection.Derived;
-import ru.omsu.imit.seminar4.reflection.InterfaceTest;
 import ru.omsu.imit.seminar4.reflection.Service;
 
 import java.util.ArrayList;
@@ -36,6 +35,7 @@ public class TestService {
     public void testMetadataClassesListWithAtLeastOneStaticMethod(){
         List<String> stringList = new ArrayList<>();
         stringList.add("ru.omsu.imit.seminar4.reflection.Service");
+        stringList.add("InterfaceTest");
         List<Class<?>> classList = new ArrayList<>();
         Collections.addAll(classList, Service.class, Base.class, InterfaceTest.class, Derived.class);
         Assert.assertEquals(stringList, metadataClassesListWithAtLeastOneStaticMethod(classList));
@@ -51,5 +51,13 @@ public class TestService {
 //        Assert.assertTrue(checkImplementsMethodSerializable(object2));
         Assert.assertTrue(checkImplementsMethodSerializable(object4));
 
+    }
+
+    @Test
+    public void testHasObjectImplementedSerializableInterface(){
+        Derived derived = new Derived("description", "additionalDescription");
+        Base base = new Base("description");
+        Assert.assertTrue(hasObjectImplementedSerializableInterface(derived));
+        Assert.assertFalse(hasObjectImplementedSerializableInterface(base));
     }
 }
